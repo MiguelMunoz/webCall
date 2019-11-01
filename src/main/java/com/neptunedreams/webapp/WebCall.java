@@ -24,6 +24,10 @@ import java.util.Map;
  * parameters will show up in the order which they are added.
  * Failure to declare all path parameters will throw an exception. Duplicating a path or query parameter will also
  * throw an exception.
+ * 
+ * Somebody may have already created a file to do this, but I haven't found it yet.
+ * 
+ * I need to add form data support, but I don't need that yet.
  * <p>Created by IntelliJ IDEA.
  * <p>Date: 11/1/19
  * <p>Time: 9:04 AM
