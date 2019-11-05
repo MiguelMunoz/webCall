@@ -34,6 +34,7 @@ import java.util.Map;
  *
  * @author Miguel Mu\u00f1oz
  */
+@SuppressWarnings("WeakerAccess")
 public class WebCall {
   private final String path;
   private final Map<String, String> pathValues = new HashMap<>();
@@ -72,6 +73,7 @@ public class WebCall {
     queryValues.put(queryElement, queryEncode(value));
   }
 
+  @SuppressWarnings("MagicCharacter")
   public String getWebCommand() {
     String callPath = path;
     for (String pathValue: pathValues.keySet()) {
@@ -82,13 +84,14 @@ public class WebCall {
       throw new IllegalStateException(String.format("Incomplete path substitutions. Resulting path: %s", callPath));
     }
     StringBuilder builder = new StringBuilder(callPath);
+    char divider = '?';
     for (String queryKey: queryValues.keySet()) {
-      //noinspection MagicCharacter
       builder
-          .append('?')
+          .append(divider)
           .append(queryKey)
           .append('=')
           .append(queryValues.get(queryKey));
+      divider = '&';
     }
     return builder.toString();
   }

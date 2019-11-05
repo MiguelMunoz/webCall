@@ -50,8 +50,20 @@ public class WebCallTest {
     webCall.setPathValue("bravo", "b b b");
     webCall.setQueryValue("charlie", "c");
     webCall.setQueryValue("delta", "d d d");
+    webCall.setQueryValue("echo", "echo echo echo");
 
     String command = webCall.getWebCommand();
-    Assert.assertEquals("/base/a/next/b%20b%20b?charlie=c?delta=d+d+d", command);
+    Assert.assertEquals("/base/a/next/b%20b%20b?charlie=c&delta=d+d+d&echo=echo+echo+echo", command);
+
+    // 
+    WebCall webCall2 = new WebCall(PATH);
+    webCall2.setPathValue("alpha", "a a a");
+    webCall2.setPathValue("bravo", "b");
+    webCall2.setQueryValue("charlie", "c c c");
+    webCall2.setQueryValue("delta", "d");
+    webCall2.setQueryValue("echo", "echo echo  echo");
+
+    String command2 = webCall2.getWebCommand();
+    Assert.assertEquals("/base/a%20a%20a/next/b?charlie=c+c+c&delta=d&echo=echo+echo++echo", command2);
   }
 }
